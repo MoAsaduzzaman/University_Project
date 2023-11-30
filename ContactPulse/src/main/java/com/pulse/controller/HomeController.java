@@ -1,8 +1,6 @@
 package com.pulse.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,9 +16,6 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
-	
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -67,7 +62,7 @@ public class HomeController {
 			user.setRole("ROLE_USER");
 			user.setEnabled(true);
 			user.setImageUrl("default.png");
-			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.setPassword(user.getPassword());
 			
 			System.out.println("Agreement: "+agreement);
 			System.out.println("USER: "+user);
